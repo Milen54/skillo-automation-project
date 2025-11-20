@@ -1,0 +1,31 @@
+{
+  "name": "js-playwright-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@playwright/test": "^1.56.1",
+    "eslint": "^9.39.1",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Milen54/skillo-automation-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Milen54/skillo-automation-project/issues"
+  },
+  "homepage": "https://github.com/Milen54/skillo-automation-project#readme"
+}
