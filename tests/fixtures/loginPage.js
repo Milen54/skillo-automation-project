@@ -2,9 +2,14 @@
 import { test as base } from "@playwright/test";
 import { LoginPage } from "../../pages/LoginPage.js";
 
+// Expose a plain object for tests/fixtures that need direct access
+export const validUser = {
+  username: "milen0922",
+  password: "User123456",
+};
+
 export const test = base.extend({
   // Provides a ready-to-use LoginPage page object
-  //eslint-disable-next-line no-empty-pattern
 
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);

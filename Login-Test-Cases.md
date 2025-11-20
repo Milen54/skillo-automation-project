@@ -23,11 +23,11 @@
 
 ### Expected Results
 
-1. A success message is displayed with text:
-   - **"Successful login!**
-2. The user is redirected to the Home/Posts page:
-   - URL: `/posts/all`
-3. The navigation element available only for logged-in users become visible **Home** button/link.
+- A success message is displayed with text:
+  - **"Successful login!**
+- The user is redirected to the Home/Posts page:
+  - URL: `/posts/all`
+- The navigation element available only for logged-in users become visible **Home** button/link.
 
 ## TC2: Login button is disabled when any field is empty
 
