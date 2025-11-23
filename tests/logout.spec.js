@@ -11,8 +11,9 @@ test.describe("Logout functionality", () => {
     console.log("=== 🔵 Starting Logout Test Suite ===");
   });
 
-  test.beforeEach(async ({ authenticatedPage }) => {
+  test.beforeEach(async ({ authenticatedPage, page }) => {
     homePage = new HomePage(authenticatedPage);
+    await expect(page).toHaveURL("/posts/all");
   });
 
   test.afterAll(async () => {
