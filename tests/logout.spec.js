@@ -35,7 +35,7 @@ test.describe("Logout functionality", () => {
 
     await expect(profilePage.profileHeader).toHaveText(validUser.username);
 
-    await profilePage.logoutButton.click();
+    await profilePage.logout();
     await expect(page).toHaveURL("/users/login");
   });
 
