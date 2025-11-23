@@ -4,11 +4,18 @@ import { test, expect } from "./fixtures/loginPage.js";
 
 test.describe("Login page", () => {
   let loginPage;
+  test.beforeAll(async () => {
+    console.log("=== 🔵 Starting Login Test Suite ===");
+  });
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     await loginPage.navigate();
     await expect(loginPage.headerSignIn).toHaveText("Sign in");
+  });
+
+  test.afterAll(async () => {
+    console.log("=== 🔴 Finished Login Test Suite ===");
   });
 
   test("TC1: Login with valid credentials", async ({ validUser, page }) => {
