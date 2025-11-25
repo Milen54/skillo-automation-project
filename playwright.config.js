@@ -3,10 +3,10 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "tests",
-  timeout: 30_000,
-  workers: 1,
+  timeout: 60_000,
+  workers: 10,
   use: {
-    headless: false,
+    headless: true,
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     trace: "retain-on-failure",
@@ -14,9 +14,9 @@ export default defineConfig({
   },
   reporter: [["html"]],
   // Enable additional browsers later if desired
-  // projects: [
-  //   { name: "chromium", use: { browserName: "chromium" } },
-  //   { name: "firefox", use: { browserName: "firefox" } },
+  projects: [
+    { name: "chromium", use: { browserName: "chromium" } },
+    { name: "firefox", use: { browserName: "firefox" } },
   //   { name: "webkit", use: { browserName: "webkit" } },
-  // ],
+  ],
 });

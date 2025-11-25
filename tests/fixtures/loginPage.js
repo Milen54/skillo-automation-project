@@ -19,8 +19,8 @@ export const test = base.extend({
 
   validUser: async ({}, use) => {
     const testUser = {
-      username: "milen0922",
-      password: "User123456",
+      username: "testuser21",
+      password: "Test123456",
     };
     await use(testUser);
   },

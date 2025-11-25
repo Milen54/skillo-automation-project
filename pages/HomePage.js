@@ -16,6 +16,7 @@ export class HomePage {
 
    async navigateToProfile() {
         await this.profileButton.click();
+        await this.page.waitForLoadState("networkidle");
     };
 
     async navigateToNewPost() {

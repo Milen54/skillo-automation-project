@@ -7,11 +7,19 @@ export class ProfilePage {
         this.profileHeader = this.page.locator("h2");
 
         this.latestPostImage = this.page.locator(".gallery-item").first();
+         //this.latestPostImage = this.page.locator(".post-img").first();
+
 
         this.deletePostBtn = this.page.locator('.delete-ask');
         this.confirmDeleteButton = this.page.getByRole("button", { name: "Yes" });
         
         this.toastMessage = this.page.locator("#toast-container");
+
+        // Locator for navigation buttons
+        this.allPostsButton = this.page.locator('.btn-all');
+        this.privatePostsButton = this.page.locator('.btn-private');
+        // this.allPostsButton = this.page.locator('.btn-all input[type="radio"]');
+        // this.privatePostsButton = this.page.locator('.btn-private input[type="radio"]');
     }
 
     async waitForToast() {
@@ -23,11 +31,21 @@ export class ProfilePage {
         await this.logoutButton.click();
     };
 
+    async navigateToAllPosts() {
+        await this.allPostsButton.check();
+    }
+
+    async navigateToPrivatePosts() {
+        await this.privatePostsButton.check();
+    }
+
     async deletePostIfExists() {
+       // await this.allPostsButton.check();
         const canDelete = await this.latestPostImage.isVisible().catch(() => false);
         if(!canDelete) {
             return;
         }
+        await this.latestPostImage.waitFor({ state: 'visible' });
         await this.latestPostImage.click();
         await this.deletePostBtn.click();
         await this.confirmDeleteButton.click();
@@ -37,5 +55,11 @@ export class ProfilePage {
         await this.latestPostImage.click();
         await this.deletePostBtn.click();
         await this.confirmDeleteButton.click(); 
+    };
+
+    async deleteAllPosts() {
+        while (await this.latestPostImage.isVisible().catch(() => false)) {
+            await this.deletePostIfExists();
+        }
     };
 }

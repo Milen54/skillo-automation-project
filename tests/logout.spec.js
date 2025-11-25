@@ -33,7 +33,7 @@ test.describe("Logout functionality", () => {
     const profilePage = new ProfilePage(page);
     await homePage.navigateToProfile();
 
-    await expect(profilePage.profileHeader).toHaveText(validUser.username);
+    await expect(profilePage.profileHeader).toHaveText(validUser.username, { timeout: 10000 });
 
     await profilePage.logout();
     await expect(page).toHaveURL("/users/login");
