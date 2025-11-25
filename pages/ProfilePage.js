@@ -8,7 +8,7 @@ export class ProfilePage {
 
         this.latestPostImage = this.page.locator(".gallery-item").first();
          //this.latestPostImage = this.page.locator(".post-img").first();
-
+        //this.latestPostImage = this.page.locator('.gallery-item img').first()
 
         this.deletePostBtn = this.page.locator('.delete-ask');
         this.confirmDeleteButton = this.page.getByRole("button", { name: "Yes" });
@@ -18,14 +18,13 @@ export class ProfilePage {
         // Locator for navigation buttons
         this.allPostsButton = this.page.locator('.btn-all');
         this.privatePostsButton = this.page.locator('.btn-private');
-        // this.allPostsButton = this.page.locator('.btn-all input[type="radio"]');
-        // this.privatePostsButton = this.page.locator('.btn-private input[type="radio"]');
+       
+        this.noPostsHeader = this.page.locator("h3").filter({ hasText: "No posts here" });
     }
 
-    async waitForToast() {
+    async waitForToast(timeout = 10000) {
     await this.toastMessage.waitFor({ state: 'visible' });
 };
-
 
     async logout() {
         await this.logoutButton.click();
@@ -52,6 +51,7 @@ export class ProfilePage {
     }
 
     async deleteLatestPost() {
+        await this.latestPostImage.first().waitFor({ state: 'visible' });
         await this.latestPostImage.click();
         await this.deletePostBtn.click();
         await this.confirmDeleteButton.click(); 

@@ -14,7 +14,7 @@ export class NewPostPage {
       .first();
     this.captionInputField = this.page.locator("[name='caption']");
 
-    this.postStatusCheckbox = this.page.locator('label[for="customSwitch2"]');
+    this.postStatusButton = this.page.locator('label[for="customSwitch2"]');
 
     this.createPostButton = this.page.locator("#create-post");
 
@@ -42,7 +42,7 @@ export class NewPostPage {
 
   // Make the post private by checking the checkbox
   async postToBePrivate() {
-    await this.postStatusCheckbox.click();
+    await this.postStatusButton.click();
   }
 
   async createPublicPost(data) {

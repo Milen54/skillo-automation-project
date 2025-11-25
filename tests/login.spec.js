@@ -3,7 +3,6 @@ import { HomePage } from "../pages/HomePage.js";
 import { test, expect } from "./fixtures/loginPage.js";
 import testData from "../test-data/users.json" assert { type: "json" };
 
-
 test.describe("Login page", () => {
   let loginPage;
   const entries = Object.entries(testData);
@@ -24,8 +23,6 @@ test.describe("Login page", () => {
 
       await loginPage.waitForToast();
       await expect(loginPage.toastMessage).toBeVisible();
-      // await expect(loginPage.errorMessage).toBeVisible();
-      // await expect(loginPage.successMessage).toHaveText("Successful login!");
 
       const homePage = new HomePage(page);
       await expect(page).toHaveURL("/posts/all");
@@ -62,12 +59,8 @@ test.describe("Login page", () => {
   test("TC1: Login with valid credentials", async ({ validUser, page }) => {
     await loginPage.login(validUser.username, validUser.password);
 
-    //00 await expect(loginPage.successMessage).toHaveText("Successful login!");
-    // await loginPage.waitForToast();
-    // await expect(loginPage.toastMessage).toBeVisible();
-
     const homePage = new HomePage(page);
-    await expect(page).toHaveURL("/posts/all");
+    await expect(page).toHaveURL("/posts/all", { timeout: 10000 });
     await expect(homePage.homeButton).toBeVisible();
   });
 
@@ -89,15 +82,13 @@ test.describe("Login page", () => {
     invalidUser,
     page,
   }) => {
-
     await loginPage.login(invalidUser.username, invalidUser.password);
 
-    // await expect(loginPage.errorMessage).toHaveText(
-    //   "Wrong username or password!"
-    // );
     await loginPage.waitForToast();
-    await expect(loginPage.toastMessage).toHaveText("Wrong username or password!");
-    
+    await expect(loginPage.toastMessage).toHaveText(
+      "Wrong username or password!"
+    );
+
     await expect(page).toHaveURL("/users/login");
   });
 });
