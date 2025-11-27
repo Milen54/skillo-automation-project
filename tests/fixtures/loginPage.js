@@ -1,12 +1,11 @@
 /* eslint-disable no-empty-pattern */
 import { test as base } from "@playwright/test";
 import { LoginPage } from "../../pages/LoginPage.js";
+import testData from "../../test-data/users.json" assert { type: "json" };
 
-// Expose a plain object for tests/fixtures that need direct access
-export const validUser = {
-  username: "milen0922",
-  password: "User123456",
-};
+const { validUser2, invalidUser1, invalidUser2, invalidUser3 } = testData;
+export const validUser = validUser2;
+export const invalidUser = invalidUser1;
 
 export const test = base.extend({
   // Provides a ready-to-use LoginPage page object
@@ -18,19 +17,11 @@ export const test = base.extend({
   },
 
   validUser: async ({}, use) => {
-    const testUser = {
-      username: "testuser21",
-      password: "Test123456",
-    };
-    await use(testUser);
+    await use(validUser2);
   },
 
   invalidUser: async ({}, use) => {
-    const invalidUser = {
-      username: "wronguser",
-      password: "wrongpass",
-    };
-    await use(invalidUser);
+    await use(invalidUser1);
   },
 });
 

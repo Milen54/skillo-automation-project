@@ -1,7 +1,7 @@
 import { HomePage } from "../pages/HomePage.js";
 import { NewPostPage } from "../pages/NewPostPage.js";
 import { ProfilePage } from "../pages/ProfilePage.js";
-import { test, expect } from "./fixtures/auth.js";
+import { test, expect } from "./fixtures/authNewPost.js";
 import path from "node:path";
 
 /**

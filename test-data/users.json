@@ -1,23 +1,31 @@
 {
-    "validUser2": {
-        "username": "testuser21",
-        "password": "Test123456"
-    },
-    "validUser3": {
-        "username": "sampleuser",
-        "password": "Sample123456"
-    },
+  "validUser1": {
+    "username": "milen0922",
+    "password": "User123456"
+  },
 
-    "invalidUser1": {
-        "username": "invaliduser",
-        "password": "WrongPass1"
-    },
-    "invalidUser2": {
-        "username": "fakeuser",
-        "password": "FakePass2"
-    },
-    "invalidUser3": {
-        "username": "nouser",
-        "password": "NoPass3"
-    }
+  "validUser2": {
+    "username": "testuser21",
+    "password": "Test123456"
+  },
+  "validUser3": {
+    "username": "sampleuser",
+    "password": "Sample123456"
+  },
+
+  "invalidUser1": {
+    "username": "invaliduser",
+    "password": "WrongPass1"
+  },
+  "invalidUser2": {
+    "username": "fakeuser",
+    "password": "FakePass2"
+  },
+  "invalidUser3": {
+    "username": "nouser",
+    "password": "NoPass3"
+  },
+
+  "invalidEmails": ["user@", "user@doamin", "userdomain.com", "@domain.com"],
+  "shortInvalidUsernames": ["a", "ab", "abc"]
 }
