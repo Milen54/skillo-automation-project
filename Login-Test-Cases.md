@@ -85,38 +85,7 @@ The credentials are taken from `test-data/users.json`, all keys starting with `i
 - (Optional UI validation) An **error message** is displayed, such as:  
   - *“Invalid username or password.”*
 
-## TC1: Login with valid credentials
-
-**Type:** Functional, Positive (Happy Path)
-
-### Preconditions
-
-- A user with valid credentials exists:
-  - **Username** `milen0922`
-  - **Password** `User123456`
-- The application is available at: `http://training.skillo-bg.com:4300`
-- The test starts from the Login page (`/users/login`)
-  (navigation is handled inside the test's `beforeEach` hook)
-
-### Test Steps
-
-1. Open the Login page (`/users/login`).
-2. Verify that the page header displays **"Sign in"**
-3. Enter a valid username into the username field.
-   - Example: `milen0922`
-4. Enter a valid password into the password field.
-   - Example: `User123456`
-5. Click the **"Sign in"** button.
-
-### Expected Results
-
-- A success message is displayed with text:
-  - **"Successful login!**
-- The user is redirected to the Home/Posts page:
-  - URL: `/posts/all`
-- The navigation element available only for logged-in users become visible **Home** button/link.
-
-## TC2: Login button is disabled when any field is empty
+## TC1: Login button is disabled when any field is empty
 
 **Type** Functional, Negative
 
@@ -152,25 +121,3 @@ The credentials are taken from `test-data/users.json`, all keys starting with `i
 - In both cases, the **Sign in** button remains dissabled
 - No login request is sent.
 
-## TC3: Login fails with wrong username and password
-
-**Type** Functional, Negative
-
-### Preconditions
-
-- The application is available at: `http://training.skillo-bg.com:4300`
-- The test starts from the Login page (`/users/login`)
-  (navigation is handled inside the test's `beforeEach` hook)
-
-### Test Steps
-
-1. Navigate to Login page (`/users/login`).
-2. Verify that page header displays **"Sign in"**.
-3. Enter invalid username (e.g. `wronguser`).
-4. Enter invalid password (e.g. `wrongpass`).
-5. Click **Sign in** button.
-
-### Expected Results
-
-- Error message **"Wrong username or password!"** appears.
-- User remains on the Login page (`/users/login`).

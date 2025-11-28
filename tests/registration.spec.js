@@ -15,6 +15,7 @@ test.describe("Registration page", () => {
   let registerPage;
   const { invalidEmails } = testData;
   const { shortInvalidUsernames } = testData;
+  const { weakPasswords } = testData;
 
   const username = generateUsername();
   const email = generateEmail();
@@ -66,6 +67,29 @@ test.describe("Registration page", () => {
     });
   });
 
+  Object.entries(weakPasswords).forEach(([ caseName, weakPasswords]) => {
+    test(`DD-TC5: User cannot register with invalid password: ${caseName}`, async ({
+        page,
+    })=>{
+        registerPage = new RegisterPage(page);
+        await registerPage.navigate();
+        await expect(registerPage.signUpHeader).toHaveText("Sign up");
+
+        await registerPage.fillRegistrationForm({
+            username,
+            email,
+            birthDate,
+            password: weakPasswords,
+            confirmPassword: weakPasswords,
+            publicInfo,
+        });
+        await expect(registerPage.signInButton).toBeDisabled();
+        await expect(page).toHaveURL("/users/register");
+    });
+  });
+
+
+
   test.beforeAll(async () => {
     console.log("=== 🔵 Starting Registration Test Suite ===");
   });
@@ -80,7 +104,7 @@ test.describe("Registration page", () => {
     console.log("=== 🔴 Finished Registration Test Suite ===");
   });
 
-  test("TC13: User can successfully register with valid data", async ({ page })=> {
+  test("TC11: User can successfully register with valid data", async ({ page })=> {
     await registerPage.register({
         username,
         email,

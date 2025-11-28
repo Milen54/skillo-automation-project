@@ -20,14 +20,14 @@ test.describe("Logout functionality", () => {
     console.log("=== 🔴 Finished Logout Test Suite ===");
   });
 
-  test("TC4: User can log out successfully from Hope Page", async ({
+  test("TC2: User can log out successfully from Hope Page", async ({
     page,
   }) => {
     await homePage.logout();
     await expect(page).toHaveURL("/users/login");
   });
 
-  test("TC5: User can log out successfully from Profile Page", async ({
+  test("TC3: User can log out successfully from Profile Page", async ({
     page,
   }) => {
     const profilePage = new ProfilePage(page);
@@ -39,7 +39,7 @@ test.describe("Logout functionality", () => {
     await expect(page).toHaveURL("/users/login");
   });
 
-  test("TC6: User can log out successfully from New Post Page", async ({
+  test("TC4: User can log out successfully from New Post Page", async ({
     page,
   }) => {
     const newPostPage = new NewPostPage(page);

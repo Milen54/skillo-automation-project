@@ -1,4 +1,4 @@
-## TC4: User can log out successfully from Home Page
+## TC2: User can log out successfully from Home Page
 
 **Type:** Functional, Positive
 
@@ -19,7 +19,7 @@
 
 - The user is redirected to the Login page (`/users/login`)
 
-## TC5: User can log out successfully from Profile Page
+## TC3: User can log out successfully from Profile Page
 
 **Type:** Functional, Positive
 
@@ -42,7 +42,7 @@
 
 - The user is redirected to the Login page (`/users/login`)
 
-## TC6: User can log out successfully from New Post Page
+## TC4: User can log out successfully from New Post Page
 
 **Type:** Functional, Positive
 

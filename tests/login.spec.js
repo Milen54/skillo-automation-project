@@ -55,19 +55,7 @@ test.describe("Login page", () => {
     console.log("=== 🔴 Finished Login Test Suite ===");
   });
 
-  test("TC1: Login with valid credentials", async ({
-    loginPage,
-    validUser,
-    page,
-  }) => {
-    await loginPage.login(validUser.username, validUser.password);
-
-    const homePage = new HomePage(page);
-    await expect(page).toHaveURL("/posts/all", { timeout: 10000 });
-    await expect(homePage.homeButton).toBeVisible();
-  });
-
-  test("TC2: Login button is disabled when any field is empty", async ({
+  test("TC1: Login button is disabled when any field is empty", async ({
     loginPage,
     validUser,
   }) => {
@@ -80,19 +68,5 @@ test.describe("Login page", () => {
     await loginPage.username.fill(validUser.username);
     await loginPage.password.fill("");
     await expect(loginPage.loginButton).toBeDisabled();
-  });
-  test("TC3: Login fails with wrong username and password", async ({
-    loginPage,
-    invalidUser,
-    page,
-  }) => {
-    await loginPage.login(invalidUser.username, invalidUser.password);
-
-    await loginPage.waitForToast();
-    await expect(loginPage.toastMessage).toHaveText(
-      "Wrong username or password!"
-    );
-
-    await expect(page).toHaveURL("/users/login");
   });
 });

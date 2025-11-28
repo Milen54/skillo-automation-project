@@ -1,4 +1,4 @@
-## TC7: User can create a new public post
+## TC5: User can create a new public post
 
 **Type:** Functional, Positive (Happy Path)
 
@@ -32,7 +32,7 @@
 - Cleanup is automatically handled in `afterEach` via `deletePostIfExists()`
 - This test is part of a **serial test suite** because posts are created and deleted (destructive operations)
 
-## TC8: User can create a new private post
+## TC6: User can create a new private post
 
 **Type:** Functional, Positive (Happy Path)
 
@@ -68,7 +68,7 @@
 - Performing the delete inside this test ensures that the test data is cleaned up immediately after verification and that subsequent runs start from a clean state.
 - This keeps the test independent, repeatable, and prevents old private posts from affecting later executions.
 
-### TC9: User cannot create a post without uploading an image
+### TC7: User cannot create a post without uploading an image
 
 **Type:** Functional, Negative
 
@@ -92,7 +92,7 @@
 - Error message **_"Please upload an image!"_** appears
 - User is still on the same page (`posts/create`) URL.
 
-### TC10: User cannot create a post without entering a caption
+### TC8: User cannot create a post without entering a caption
 
 **Type:** Functional, Negative
 
@@ -116,7 +116,7 @@
 - Error message **_"Please enter caption!"_** appears
 - User is still on the same page (`posts/create`) URL
 
-### TC11: User can successfully delete their post
+### TC9: User can successfully delete their post
 
 **Type:** Functional, Positive
 
@@ -144,7 +144,7 @@
 - Sucessfully deleted post
 - Verify the 'toast messsage' contains text (`Post Deleted!`)
 
-### TC12: User cannot create an empty post
+### TC10: User cannot create an empty post
 
 **Type:** Functional, Negative
 

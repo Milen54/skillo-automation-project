@@ -43,7 +43,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
   });
 
   // eslint-disable-next-line no-empty-pattern
-  test("TC7: User can create a new public post", async ({}) => {
+  test("TC5: User can create a new public post", async ({}) => {
     await postPage.createPublicPost({
       filePath: [filePath],
       captionPrefix: "Public Post TC7",
@@ -53,7 +53,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
   });
 
   // eslint-disable-next-line no-empty-pattern
-  test("TC8: User can create and delete a new private post", async ({}) => {
+  test("TC6: User can create and delete a new private post", async ({}) => {
     await postPage.createPrivatePost({
       filePath: [filePath],
       captionPrefix: "Private Post TC8",
@@ -70,7 +70,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
     await expect(profilePage.noPostsHeader).toBeVisible();
   });
 
-  test("TC9: User cannot create a post without uploading an image", async ({
+  test("TC7: User cannot create a post without uploading an image", async ({
     page,
   }) => {
     const caption = await postPage.generatePostCaption("No Image Post TC9");
@@ -85,7 +85,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
     await expect(page).toHaveURL("/posts/create");
   });
 
-  test("TC10: User cannot create a post without entering a caption", async ({
+  test("TC8: User cannot create a post without entering a caption", async ({
     page,
   }) => {
     await postPage.uploadFile([filePath]);
@@ -97,7 +97,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
   });
 
   // eslint-disable-next-line no-empty-pattern
-  test("TC11: User can successfully delete their post", async ({}) => {
+  test("TC9: User can successfully delete their post", async ({}) => {
     await postPage.createPublicPost({
       filePath: [filePath],
       captionPrefix: "Delete Post TC10",
@@ -114,7 +114,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
     await expect(profilePage.toastMessage).toContainText("Post Deleted!");
   });
 
-  test("TC12: User cannot create an empty post", async ({ page }) => {
+  test("TC10: User cannot create an empty post", async ({ page }) => {
     await postPage.createPostButton.click();
 
     await postPage.waitForToast();
