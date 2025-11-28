@@ -4,7 +4,6 @@ import { test, expect } from "./fixtures/loginPage.js";
 import testData from "../test-data/users.json" assert { type: "json" };
 
 test.describe("Login page", () => {
-  let loginPage;
   const entries = Object.entries(testData);
 
   const validUserArray = entries.filter(([key]) => key.startsWith("validUser"));
@@ -14,9 +13,10 @@ test.describe("Login page", () => {
   );
 
   validUserArray.forEach(([userKey, userData]) => {
-    test(`DD-TC: Login with valid user: ${userKey}`, async ({ page }) => {
-      loginPage = new LoginPage(page);
-      await loginPage.navigate();
+    test(`DD-TC: Login with valid user: ${userKey}`, async ({
+      loginPage,
+      page,
+    }) => {
       await expect(loginPage.headerSignIn).toHaveText("Sign in");
 
       await loginPage.login(userData.username, userData.password);
@@ -31,9 +31,10 @@ test.describe("Login page", () => {
   });
 
   invalidUserArray.forEach(([userKey, userData]) => {
-    test(`DD-TC1: Login with invalid user: ${userKey}`, async ({ page }) => {
-      loginPage = new LoginPage(page);
-      await loginPage.navigate();
+    test(`DD-TC1: Login with invalid user: ${userKey}`, async ({
+      loginPage,
+      page,
+    }) => {
       await expect(loginPage.headerSignIn).toHaveText("Sign in");
 
       await loginPage.login(userData.username, userData.password);
@@ -46,9 +47,7 @@ test.describe("Login page", () => {
     console.log("=== 🔵 Starting Login Test Suite ===");
   });
 
-  test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
-    await loginPage.navigate();
+  test.beforeEach(async ({ loginPage }) => {
     await expect(loginPage.headerSignIn).toHaveText("Sign in");
   });
 
@@ -56,7 +55,11 @@ test.describe("Login page", () => {
     console.log("=== 🔴 Finished Login Test Suite ===");
   });
 
-  test("TC1: Login with valid credentials", async ({ validUser, page }) => {
+  test("TC1: Login with valid credentials", async ({
+    loginPage,
+    validUser,
+    page,
+  }) => {
     await loginPage.login(validUser.username, validUser.password);
 
     const homePage = new HomePage(page);
@@ -65,6 +68,7 @@ test.describe("Login page", () => {
   });
 
   test("TC2: Login button is disabled when any field is empty", async ({
+    loginPage,
     validUser,
   }) => {
     // Case 1: username empty, password filled
@@ -77,8 +81,8 @@ test.describe("Login page", () => {
     await loginPage.password.fill("");
     await expect(loginPage.loginButton).toBeDisabled();
   });
-
   test("TC3: Login fails with wrong username and password", async ({
+    loginPage,
     invalidUser,
     page,
   }) => {
