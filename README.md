@@ -126,6 +126,7 @@ skillo-automation-project/
 ├── TestCases/                  # Test case documentation
 │   ├── Login-Test-Cases.md
 │   └── Registration-Test-Cases.md
+├── BugReport.md                # Bug tracking and documentation
 ├── playwright.config.js        # Playwright configuration
 ├── package.json                # Project dependencies
 ├── eslint.config.mjs          # ESLint configuration
