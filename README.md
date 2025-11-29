@@ -123,9 +123,14 @@ skillo-automation-project/
 │   └── test-image.jpg         # Sample image for post tests
 ├── helpers/                    # Utility functions
 │   └── dataGenerator.js       # Generate dynamic test data
-├── TestCases/                  # Test case documentation
+├── test-cases/                  # Test case documentation
 │   ├── Login-Test-Cases.md
+│   ├── Logout-Test-Cases.md
+│   ├── NewPost-Test-Cases.md
 │   └── Registration-Test-Cases.md
+├── .github/                    # GitHub configuration
+│   └── workflows/             # CI/CD workflows
+│       └── playwright.yml     # GitHub Actions CI pipeline
 ├── BugReport.md                # Bug tracking and documentation
 ├── playwright.config.js        # Playwright configuration
 ├── package.json                # Project dependencies
