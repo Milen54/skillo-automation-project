@@ -122,4 +122,39 @@ test.describe("Registration page", () => {
     await expect(homePage.homeButton).toBeVisible();
   });
 
-});
+  test("TC12: User can register with date in the future", async ({ page }) => {
+    await registerPage.fillRegistrationForm({
+      username: username + "Future",
+      email: "qa" + email,
+      birthDate: "2027-12-20",
+      password,
+      confirmPassword,
+      publicInfo,
+    });
+    await registerPage.clickSignInButton();
+
+    await registerPage.waitForToast();
+    await expect(registerPage.toastMessage).toContainText(
+      "Successful register!"
+    );
+    
+    const homePage = new HomePage(page);
+    await expect(page).toHaveURL("/posts/all", { timeout: 10000 });
+    await expect(homePage.homeButton).toBeVisible();
+
+  })
+
+  test("TC13: User cannot register without entering public info", async ({ page })=> {
+    await registerPage.fillRegistrationForm({
+        username,
+        email,
+        birthDate,
+        password,
+        confirmPassword,
+        publicInfo: "",
+    });
+    await expect(registerPage.signInButton).toBeDisabled();
+    await expect(page).toHaveURL("/users/register");
+        
+    })
+  });

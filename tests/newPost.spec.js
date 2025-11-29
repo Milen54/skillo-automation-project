@@ -64,10 +64,8 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
 
     await profilePage.deleteLatestPost();
 
-    // await profilePage.waitForToast();
-    // await expect(profilePage.toastMessage).toContainText("Post Deleted!");
-
-    await expect(profilePage.noPostsHeader).toBeVisible();
+    await profilePage.waitForToast();
+    await expect(profilePage.toastMessage).toContainText("Post Deleted!");
   });
 
   test("TC7: User cannot create a post without uploading an image", async ({

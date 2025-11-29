@@ -4,7 +4,7 @@ export function generateUsername() {
 };
 
 export function generateEmail() {
-    const timestamp = Date.now().toString().slice(-6); // Use last 6 digits for uniqueness
+    const timestamp = Date.now().toString().slice(-4); // Use last 4 digits for uniqueness
     return `user${timestamp}@mail.com`;
 };
 

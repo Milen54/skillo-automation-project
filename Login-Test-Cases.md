@@ -8,6 +8,7 @@ The credentials are taken from `test-data/users.json`, all keys starting with `v
 
 | ID         | Username   | Password     |
 |-----------|-----------|-------------|
+| validUser1 | `milen0922`  | `User123456`  | 
 | validUser2 | `testuser21` | `Test123456`  |
 | validUser3 | `sampleuser` | `Sample123456` |
 

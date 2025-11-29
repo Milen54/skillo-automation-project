@@ -27,12 +27,13 @@
   },
 
   "invalidEmails": ["user@", "user@doamin", "userdomain.com", "@domain.com"],
-  
+
   "shortInvalidUsernames": ["a", "ab", "abc"],
 
   "weakPasswords": {
     "tooShort": "123",
     "noUppercase": "password123",
-    "noNumber": "Password!"
+    "noNumber": "Password!",
+    "longerThanMax": "ThisIsAVeryLongPassword"
   }
 }
