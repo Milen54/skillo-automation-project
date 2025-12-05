@@ -221,12 +221,9 @@ Playwright fixtures provide reusable test setup:
 ## 🔮 Future Improvements
 
 - Add API testing layer for faster validation
-- Implement visual regression testing
-- Add performance testing metrics
 - Integrate with CI/CD pipeline (GitHub Actions)
-- Add Allure reporting for enhanced test visualization
+- Improve performance of the test suite (reduce duplication, faster executuion)
 - Expand test coverage for edge cases
-- Add database validation for critical flows
 
 ## 👤 Author
 
