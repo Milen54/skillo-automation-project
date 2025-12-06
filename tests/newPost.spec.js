@@ -1,4 +1,3 @@
-import { HomePage } from "../pages/HomePage.js";
 import { NewPostPage } from "../pages/NewPostPage.js";
 import { ProfilePage } from "../pages/ProfilePage.js";
 import { test, expect } from "./fixtures/authNewPost.js";
@@ -14,7 +13,6 @@ import path from "node:path";
  * - Running these tests in parallel workers causes **race conditions** */
 
 test.describe("New Post functionality", { mode: "serial" }, () => {
-  let homePage;
   let postPage;
   let profilePage;
 
@@ -25,10 +23,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
   });
 
   test.beforeEach(async ({ authenticatedNewPostPage }) => {
-    homePage = new HomePage(authenticatedNewPostPage);
-
-    await expect(authenticatedNewPostPage).toHaveURL("/posts/all");
-    await homePage.navigateToNewPost();
+    await expect(authenticatedNewPostPage).toHaveURL("/posts/create");
 
     postPage = new NewPostPage(authenticatedNewPostPage);
     profilePage = new ProfilePage(authenticatedNewPostPage);

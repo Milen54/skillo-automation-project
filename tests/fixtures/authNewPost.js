@@ -14,6 +14,9 @@ export const test = base.extend({
 
     await page.waitForURL("**/posts/all");
 
+    // Navigate to New Post page - ready for test execution
+    await page.goto("/posts/create");
+
     await use(page);
   },
 });

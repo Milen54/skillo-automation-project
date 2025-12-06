@@ -1,17 +1,20 @@
-import { LoginPage } from "../pages/LoginPage.js";
 import { HomePage } from "../pages/HomePage.js";
-import { test, expect } from "./fixtures/loginPage.js";
+import { test, expect, validUser } from "./fixtures/loginPage.js";
 import testData from "../test-data/users.json" assert { type: "json" };
 
 test.describe("Login page", () => {
+  // Convert users.json object to array of [key, value] pairs for iteration
   const entries = Object.entries(testData);
 
+  // Filter to get only valid users (validUser1, validUser2, validUser3, etc.)
   const validUserArray = entries.filter(([key]) => key.startsWith("validUser"));
 
+  // Filter to get only invalid users (invalidUser1, invalidUser2, invalidUser3, etc.)
   const invalidUserArray = entries.filter(([key]) =>
     key.startsWith("invalidUser")
   );
 
+  // Data-driven test: Iterates through ALL valid users from users.json
   validUserArray.forEach(([userKey, userData]) => {
     test(`DD-TC: Login with valid user: ${userKey}`, async ({
       loginPage,
@@ -30,6 +33,7 @@ test.describe("Login page", () => {
     });
   });
 
+  // Data-driven test: Iterates through ALL invalid users from users.json
   invalidUserArray.forEach(([userKey, userData]) => {
     test(`DD-TC1: Login with invalid user: ${userKey}`, async ({
       loginPage,
@@ -55,9 +59,9 @@ test.describe("Login page", () => {
     console.log("=== 🔴 Finished Login Test Suite ===");
   });
 
+  // TC1: Non-data-driven test that uses the imported validUser constant (validUser2)
   test("TC1: Login button is disabled when any field is empty", async ({
     loginPage,
-    validUser,
   }) => {
     // Case 1: username empty, password filled
     await loginPage.username.fill("");
