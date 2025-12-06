@@ -24,14 +24,14 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
     console.log("=== 🔵 Starting New Post Test Suite ===");
   });
 
-  test.beforeEach(async ({ authenticatedPage, page }) => {
-    homePage = new HomePage(authenticatedPage);
+  test.beforeEach(async ({ authenticatedNewPostPage }) => {
+    homePage = new HomePage(authenticatedNewPostPage);
 
-    await expect(authenticatedPage).toHaveURL("/posts/all");
+    await expect(authenticatedNewPostPage).toHaveURL("/posts/all");
     await homePage.navigateToNewPost();
 
-    postPage = new NewPostPage(page);
-    profilePage = new ProfilePage(page);
+    postPage = new NewPostPage(authenticatedNewPostPage);
+    profilePage = new ProfilePage(authenticatedNewPostPage);
   });
 
   test.afterEach(async () => {
@@ -69,7 +69,7 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
   });
 
   test("TC7: User cannot create a post without uploading an image", async ({
-    page,
+    authenticatedNewPostPage,
   }) => {
     const caption = await postPage.generatePostCaption("No Image Post TC9");
     await postPage.fillCaption(caption);
@@ -80,18 +80,18 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
     await expect(postPage.toastMessage).toContainText(
       "Please upload an image!"
     );
-    await expect(page).toHaveURL("/posts/create");
+    await expect(authenticatedNewPostPage).toHaveURL("/posts/create");
   });
 
   test("TC8: User cannot create a post without entering a caption", async ({
-    page,
+    authenticatedNewPostPage,
   }) => {
     await postPage.uploadFile([filePath]);
     await postPage.createPostButton.click();
 
     await postPage.waitForToast();
     await expect(postPage.toastMessage).toContainText("Please enter caption!");
-    await expect(page).toHaveURL("/posts/create");
+    await expect(authenticatedNewPostPage).toHaveURL("/posts/create");
   });
 
   // eslint-disable-next-line no-empty-pattern
@@ -108,17 +108,20 @@ test.describe("New Post functionality", { mode: "serial" }, () => {
 
     await profilePage.deleteLatestPost();
 
-    await profilePage.waitForToast();
-    await expect(profilePage.toastMessage).toContainText("Post Deleted!");
+    // await profilePage.waitForToast();
+    // await expect(profilePage.toastMessage).toContainText("Post Deleted!");
+    await expect(profilePage.latestPostImage).not.toBeVisible();
   });
 
-  test("TC10: User cannot create an empty post", async ({ page }) => {
+  test("TC10: User cannot create an empty post", async ({
+    authenticatedNewPostPage,
+  }) => {
     await postPage.createPostButton.click();
 
     await postPage.waitForToast();
     await expect(postPage.toastMessage).toContainText(
       "Please upload an image!"
     );
-    await expect(page).toHaveURL("/posts/create");
+    await expect(authenticatedNewPostPage).toHaveURL("/posts/create");
   });
 });

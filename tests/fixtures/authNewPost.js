@@ -5,7 +5,7 @@ import testData from "../../test-data/users.json" assert { type: "json" };
 const { validUser1 } = testData;
 
 export const test = base.extend({
-  authenticatedPage: async ({ page }, use) => {
+  authenticatedNewPostPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
 
     // Navigate to login page and perform a login using validUser1 (dedicated for newPost tests)
