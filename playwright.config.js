@@ -4,7 +4,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "tests",
   timeout: 60_000,
-  // workers: 10,
+  workers: 10,
   fullyParallel: true,
   use: {
     headless: true,
@@ -18,6 +18,6 @@ export default defineConfig({
   projects: [
     { name: "chromium", use: { browserName: "chromium" } },
     { name: "firefox", use: { browserName: "firefox" } },
-  //   { name: "webkit", use: { browserName: "webkit" } },
+    //   { name: "webkit", use: { browserName: "webkit" } },
   ],
 });
